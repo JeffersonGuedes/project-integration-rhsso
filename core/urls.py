@@ -5,7 +5,7 @@ from django.views.static import serve
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin-integration/', admin.site.urls),
     path('api/integration/', include('integration.urls')),
 
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
