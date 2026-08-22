@@ -44,5 +44,4 @@ RUN chown -R django:django /app
 
 EXPOSE 8080
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8080 --workers 3 core.wsgi:application"]
