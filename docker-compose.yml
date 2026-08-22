@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     expose:
-      - "8000"
+      - "8080" # Porta que o Gunicorn escuta dentro do container
     volumes:
       - media_data:/app/media
       - static_data:/app/staticfiles
@@ -15,9 +15,11 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - "8080:80" 
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - media_data:/app/media:ro # Adicionado para carregar as mídias
+      - static_data:/app/staticfiles:ro # Adicionado para carregar os estáticos
     depends_on:
       - web
     restart: unless-stopped
